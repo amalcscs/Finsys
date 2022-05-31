@@ -538,7 +538,8 @@ def updateuserprofile(request):
 
 @login_required(login_url='regcomp')
 def goonlinebank(request):
-    return render(request, 'app1/onlinebank.html')
+    cmp1 = company.objects.get(id=request.session['uid'])
+    return render(request, 'app1/onlinebank.html', {'cmp1': cmp1})
 
 
 @login_required(login_url='regcomp')
