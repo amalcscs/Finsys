@@ -312,7 +312,8 @@
                                             <div class="col-md-6 mt-3">
                                                 <label for="validationCustom05" style="color: white;">HSN
                                                     Code</label>
-                                                <input type="text" name="hsn" class="form-control"
+                                            <input type="text" name="hsn" class="form-control" 
+                                            pattern="[0-9]{8}" maxlength="8" title=" Maximum 8 digits, characters not allowed"
                                                        style="background-color: #2a4964; color: white;"
                                                        id="validationCustom05"
                                                        placeholder="Enter a valid HSN code" required>

@@ -223,7 +223,7 @@
                         {% endif %}
                         {% endfor %}
                       </select></td>
-                    <td><input type="text" name='hsn' id="hsn1" value="{{ invoice.hsn }}" placeholder='Enter HSN Code' class="form-control" /></td>
+                    <td><input type="text" name='hsn' id="hsn" value="{{ invoice.hsn }}" placeholder='Enter HSN Code' class="form-control" /></td>
                     <td><input type="text" name='description' id="description" value="{{ invoice.description }}" placeholder='Description' class="form-control" /></td>
                     <td><input type="number" name='qty' id="qty1" value="{{ invoice.qty }}" placeholder='Enter Qty' onchange="qtychange1(this)" class="form-control qty" step=0 min=0 />
                       <span id="qtyspan" class="text-muted"></span>
