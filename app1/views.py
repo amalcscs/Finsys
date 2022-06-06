@@ -43,6 +43,10 @@ def create(request):
                     messages.info(
                         request, 'This username already exists. Sign up again')
                     return render(request, 'app1/login.html')
+                elif User.objects.filter(email=email).exists():
+                    messages.info(
+                        request, 'This email already exists. Please enter valid Email')
+                    return render(request, 'app1/login.html')
                 else:
                     user = User.objects.create_user(first_name=firstname, last_name=lastname, email=email,
                                                     username=username, password=password)
@@ -1092,54 +1096,72 @@ def goaddemp(request):
 def employees(request):
     try:
         cmp1 = company.objects.get(id=request.session['uid'])
-        if employee.objects.filter(aadhaarnumber=request.POST['aadhaarnumber']).exists() or employee.objects.filter(
-                employeenumber=request.POST['employeenumber']).exists():
+        if employee.objects.filter(gmail=request.POST['gmail']).exists():
             emp = employee.objects.filter(cid=cmp1).all()
             context = {'employee': emp, 'cmp1': cmp1}
+            messages.info(
+                        request, 'This email already exists. Please enter valid Email')
             return redirect('goemployee')
-        else:
-            employees1 = employee(name=request.POST['name'], joiningdate=request.POST['joiningdate'],
-                                  employeenumber=request.POST['employeenumber'],
-                                  designation=request.POST['designation'],
-                                  department=request.POST['department'], branch=request.POST['branch'],
-                                  location=request.POST['location'], gender=request.POST['gender'],
-                                  age=request.POST['age'],
-                                  mobile=request.POST['mobile'], gmail=request.POST['gmail'],
-                                  address=request.POST['address'],
+        elif request.method == 'POST':
+                emp11=employee()
+                emp11.name=request.POST['name']
+                emp11.joiningdate=request.POST['joiningdate']
+                emp11.employeenumber=request.POST['employeenumber']
+                emp11.designation=request.POST['designation']
+                emp11.department=request.POST['department']
+                emp11.branch=request.POST['branch']
+                emp11.location=request.POST['location']
+                emp11.gender=request.POST['gender']
+                emp11.age=request.POST['age']
+                emp11.mobile=request.POST['mobile']
+                emp11.gmail=request.POST['gmail']
+                emp11.address=request.POST['address']
 
-                                  providebankdetails=request.POST['providebankdetails'],
-                                  bankaccountnumber=request.POST['bankaccountnumber'],
-                                  ifsccode=request.POST['ifsccode'],
+                emp11.providebankdetails=request.POST['providebankdetails']
+                emp11.bankaccountnumber=request.POST['bankaccountnumber']
+                emp11.ifsccode=request.POST['ifsccode']
 
-                                  hrareceived=request.POST['hrareceived'],
-                                  totalrentpaid=request.POST['totalrentpaid'],
-                                  livein=request.POST['livein'],
+                emp11.hrareceived=request.POST['hrareceived']
+                emp11.totalrentpaid=request.POST['totalrentpaid']
+                emp11.livein=request.POST['livein']
 
-                                  applicabletaxregime=request.POST['applicabletaxregime'],
-                                  pannumber=request.POST['pannumber'],
-                                  aadhaarnumber=request.POST['aadhaarnumber'],
-                                  universalaccountnumber=request.POST['universalaccountnumber'],
-                                  pfaccountnumber=request.POST['pfaccountnumber'],
-                                  epsaccountnumber=request.POST['epsaccountnumber'],
-                                  praccountnumber=request.POST['praccountnumber'],
-                                  esinumber=request.POST['esinumber'],
-                                  esidispensaryname=request.POST['esidispensaryname'], basic=request.POST['basic'],
-                                  da=request.POST['da'],
-                                  othincome1=request.POST['othrincome1'], othincome2=request.POST['othrincome2'],
-                                  othincome3=request.POST['othrincome3'], othincome4=request.POST['othrincome4'],
-                                  othincome5=request.POST['othrincome5'], othamount1=request.POST['othramount1'],
-                                  othamount2=request.POST['othramount2'], othamount3=request.POST['othramount3'],
-                                  othamount4=request.POST['othramount4'], othamount5=request.POST['othramount5'],
-                                  provifund=request.POST['provifund'], proftax=request.POST['proftax'],
-                                  esi=request.POST['esi'], deduc1=request.POST['deduc1'], deduc2=request.POST['deduc2'],
-                                  deduc3=request.POST['deduc3'], deduc4=request.POST['deduc4'],
-                                  deducamt1=request.POST['deducamt1'],
-                                  deducamt2=request.POST['deducamt2'], deducamt3=request.POST['deducamt3'],
-                                  deducamt4=request.POST['deducamt4'], cid=cmp1)
-            employees1.save()
-            emp = employee.objects.filter(cid=cmp1).all()
-            context = {'employee': emp, 'cmp1': cmp1}
-            return redirect('goemployee')
+                emp11.applicabletaxregime=request.POST['applicabletaxregime']
+                emp11.pannumber=request.POST['pannumber']
+                emp11.aadhaarnumber=request.POST['aadhaarnumber']
+                emp11.universalaccountnumber=request.POST['universalaccountnumber']
+                emp11.pfaccountnumber=request.POST['pfaccountnumber']
+                emp11.epsaccountnumber=request.POST['epsaccountnumber']
+                emp11.praccountnumber=request.POST['praccountnumber']
+                emp11.esinumber=request.POST['esinumber']
+                emp11.esidispensaryname=request.POST['esidispensaryname']
+                emp11.basic=request.POST['basic']
+                emp11.da=request.POST['da']
+                emp11.othincome1=request.POST['othrincome1']
+                emp11.othincome2=request.POST['othrincome2']
+                emp11.othincome3=request.POST['othrincome3']
+                emp11.othincome4=request.POST['othrincome4']
+                emp11.othincome5=request.POST['othrincome5']
+                emp11.othamount1=request.POST['othramount1']
+                emp11.othamount2=request.POST['othramount2']
+                emp11.othamount3=request.POST['othramount3']
+                emp11.othamount4=request.POST['othramount4']
+                emp11.othamount5=request.POST['othramount5']
+                emp11.provifund=request.POST['provifund']
+                emp11.proftax=request.POST['proftax']
+                emp11.esi=request.POST['esi']
+                emp11.deduc1=request.POST['deduc1']
+                emp11.deduc2=request.POST['deduc2']
+                emp11.deduc3=request.POST['deduc3']
+                emp11.deduc4=request.POST['deduc4']
+                emp11.deducamt1=request.POST['deducamt1']
+                emp11.deducamt2=request.POST['deducamt2']
+                emp11.deducamt3=request.POST['deducamt3']
+                emp11.deducamt4=request.POST['deducamt4']
+                emp11.cid=cmp1
+                emp11.save()
+                emp = employee.objects.filter(cid=cmp1).all()
+                context = {'employee': emp, 'cmp1': cmp1}
+                return redirect('goemployee')
     except:
         return redirect('goemployee')
 

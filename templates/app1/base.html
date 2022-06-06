@@ -43,6 +43,18 @@
     .a {
       font-family: "Poppins", sans-serif;
     }
+    
+    table {
+      border-collapse: separate;
+      white-space: normal;
+      line-height: normal;
+      font-weight: normal;
+      font-size: medium;
+      font-style: normal;
+      color: -internal-quirk-inherit;
+      text-align: start;
+      border-spacing: 0px!important;
+      font-variant: normal;   }
   </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script>
@@ -84,11 +96,66 @@
                 <button class="btn btn-search-back" type="button"><i class="bx bx-arrow-back"></i>
                 </button>
               </div>
-              <input type="text" class="form-control" placeholder="search" />
+              <input type="text" autocomplete="off" id="myInput" onkeyup="ContactsearchFX()" class="form-control" placeholder="search" />
               <div class="input-group-append">
                 <button class="btn btn-search" type="button"><i class="lni lni-search-alt"></i>
                 </button>
               </div>
+              <div class="table-responsive mt-5" style="z-index:1;position:absolute;
+              background-color: #213b52;width:550px;">
+              
+                 <table id="myTable" >
+                  <tr>
+                    <td><a href="{% url 'godash' %}">Dashboard</a></td>
+            </tr>
+                  <tr>
+                    <td><a href="{% url 'goonlinebank' %}">Online Banking</a></td>
+            </tr>
+            <tr>
+              <td><a href="{% url 'goofflinebank' %}">Offline Banking</a></td>
+            </tr>
+            <tr>
+              <td><a href="{% url 'gobankrecon' %}">Bank Reconcilation</a></td>
+            </tr>
+            <tr>
+              <td><a href="{% url 'gosalesrecords' %}">Sales Records</a></td>
+            <tr>
+            <tr>
+              <td><a href="{% url 'goinvoices' %}">Invoices</a></td>
+            </tr>
+            <tr>
+              <td><a href="{% url 'gocustomers' %}">Customers</a></td>
+            </tr>
+            <tr>
+              <td><a href="{% url 'gopands' %}">Product and Services</a></td>
+            <tr>
+            <tr>
+              <td><a href="{% url 'goexpences' %}">Expenses</a></td>
+            </tr>
+            <tr>
+              <td><a href="{% url 'gosupplies' %}">Suppliers</a></td>
+            </tr>
+            
+            <tr>
+              <td><a href="{% url 'gocoa' %}">Chart of Accounts</a></td>
+            </tr>
+            <tr>
+              <td><a href="{% url 'gorecon' %}">Reconcile</a></td>
+            </tr>
+            <tr>
+              <td><a href="{% url 'cashposition' %}">Cash Position</a></td>
+            </tr>
+            <tr>
+              <td><a href="{% url 'gorecon' %}">Reconcile</a></td>
+            </tr>
+            <tr>
+              <td><a href="{% url 'gorecon' %}">Cash Position</a></td>
+            </tr> 
+                   </table>
+                 </div>
+
+
+              
             </div>
           </div>
           <div class="right-topbar ml-auto">
@@ -211,6 +278,8 @@
         </nav>
       </header>
       <!--end header-->
+
+      
       <!--navigation-->
       {% if user.is_authenticated %}
       <div id="nav1" class="nav-container" style="background-color: #213b52;">
@@ -413,6 +482,8 @@
             {% endif %}
             {% endfor %}
           </div>
+<div></div>
+          
           {% block body %}
 
           {% endblock %}
@@ -422,6 +493,48 @@
     </div>
 
   </div>
+
+
+  <script>
+    window.onload = function() {
+   var rows = document.querySelectorAll('tr:not(.header)');
+ 
+   for (var i = 0; i < rows.length; i++) {
+     rows[i].style.display = 'none';
+   }
+ }
+ 
+ function ContactsearchFX() {
+   var input, filter, table, tr, td, i;
+  
+   input = document.getElementById("myInput");
+ 
+   filter = input.value.toUpperCase();
+   table = document.getElementById("myTable");
+   tr = table.getElementsByTagName("tr");
+   for (i = 0; i < tr.length; i++) {
+     td = tr[i].getElementsByTagName("td")[0];
+     if (td) {
+       if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+         tr[i].style.display = "";
+       } else {
+         tr[i].style.display = "none";
+ 
+       }
+     }
+   }
+   
+    var rows = document.querySelectorAll('tr:not(.header)');
+    
+    if (input.value.length == 0) {
+     for (var i = 0; i < rows.length; i++) {
+       rows[i].style.display = 'none';
+     }
+   }
+ }
+ </script>
+
+
   <!-- end wrapper -->
   <!-- JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->

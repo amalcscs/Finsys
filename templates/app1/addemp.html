@@ -200,6 +200,16 @@
                                            style="background-color: #2f516f;color: white;">
                                     <div class="valid-feedback">Looks good!</div>
                                 </div>
+
+                                {% for message in messages %}
+                                {% if message %}
+                                    <div class="alert">
+                                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                                        {{ message }}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+
                                 <div class="col">
                                     <label for="validationCustom02">Gmail</label>
                                     <input type="email" class="form-control" id="validationCustom02" name="gmail"
@@ -342,7 +352,7 @@
                                            style="background-color: #2f516f;color: white;">
                                     <div class="valid-feedback">Looks good!</div>
                                 </div>
-                            </div>
+                            </div> -->
                             &nbsp;
                             <div class="row">
                                 <div class="col">
@@ -563,7 +573,7 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div>
+                    </div> 
 
                     <div class="row mt-4 mb-4">
                         <div class="col-md-4"></div>
@@ -695,4 +705,38 @@
             </div>
         </div>
     </div>
+
+
+    <script>
+        const sign_in_btn = document.querySelector("#sign-in-btn");
+        const sign_up_btn = document.querySelector("#sign-up-btn");
+        const container = document.querySelector(".container");
+    
+        sign_up_btn.addEventListener("click", () => {
+            container.classList.add("sign-up-mode");
+        });
+    
+        sign_in_btn.addEventListener("click", () => {
+            container.classList.remove("sign-up-mode");
+        });
+    
+    </script>
+    <script>
+        function validate() {
+            var pwd = document.getElementById("pwd").value;
+            var cnfpwd = document.getElementById("cnfpwd").value;
+            var usnm = document.getElementById("user").value;
+    
+            if (pwd.length < 8 || pwd.length > 18) {
+                alert("Password length is invalid");
+                return false;
+            }
+            if (pwd != cnfpwd) {
+                alert("password and conform password does not match");
+                return false;
+            }
+            return true;
+        }
+    </script>
+
 {% endblock %}
