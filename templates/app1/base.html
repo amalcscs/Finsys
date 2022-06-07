@@ -44,7 +44,8 @@
       font-family: "Poppins", sans-serif;
     }
     
-    table {
+    .one {
+      display:none;
       border-collapse: separate;
       white-space: normal;
       line-height: normal;
@@ -96,62 +97,32 @@
                 <button class="btn btn-search-back" type="button"><i class="bx bx-arrow-back"></i>
                 </button>
               </div>
-              <input type="text" autocomplete="off" id="myInput" onkeyup="ContactsearchFX()" class="form-control" placeholder="search" />
+              <input type="text" autocomplete="off" id="btn2" onkeyup="myFunction()" onclick="myFunction1()" class="form-control" placeholder="search" />
               <div class="input-group-append">
                 <button class="btn btn-search" type="button"><i class="lni lni-search-alt"></i>
                 </button>
               </div>
-              <div class="table-responsive mt-5" style="z-index:1;position:absolute;
+              <div class=" mt-5" id="box"  style="z-index:1;position:absolute; 
               background-color: #213b52;width:550px;">
               
-                 <table id="myTable" >
-                  <tr>
-                    <td><a href="{% url 'godash' %}">Dashboard</a></td>
-            </tr>
-                  <tr>
-                    <td><a href="{% url 'goonlinebank' %}">Online Banking</a></td>
-            </tr>
-            <tr>
-              <td><a href="{% url 'goofflinebank' %}">Offline Banking</a></td>
-            </tr>
-            <tr>
-              <td><a href="{% url 'gobankrecon' %}">Bank Reconcilation</a></td>
-            </tr>
-            <tr>
-              <td><a href="{% url 'gosalesrecords' %}">Sales Records</a></td>
-            <tr>
-            <tr>
-              <td><a href="{% url 'goinvoices' %}">Invoices</a></td>
-            </tr>
-            <tr>
-              <td><a href="{% url 'gocustomers' %}">Customers</a></td>
-            </tr>
-            <tr>
-              <td><a href="{% url 'gopands' %}">Product and Services</a></td>
-            <tr>
-            <tr>
-              <td><a href="{% url 'goexpences' %}">Expenses</a></td>
-            </tr>
-            <tr>
-              <td><a href="{% url 'gosupplies' %}">Suppliers</a></td>
-            </tr>
-            
-            <tr>
-              <td><a href="{% url 'gocoa' %}">Chart of Accounts</a></td>
-            </tr>
-            <tr>
-              <td><a href="{% url 'gorecon' %}">Reconcile</a></td>
-            </tr>
-            <tr>
-              <td><a href="{% url 'cashposition' %}">Cash Position</a></td>
-            </tr>
-            <tr>
-              <td><a href="{% url 'gorecon' %}">Reconcile</a></td>
-            </tr>
-            <tr>
-              <td><a href="{% url 'gorecon' %}">Cash Position</a></td>
-            </tr> 
-                   </table>
+                 <ul id="myUL" class="one newade" style="list-style: none;">
+                  <li><a href="{% url 'godash' %}">Dashboard</a></li>
+                  <li><a href="{% url 'goonlinebank' %}">Online Banking</a></li>
+                  <li><a href="{% url 'goofflinebank' %}">Offline Banking</a></li>
+                    <li><a href="{% url 'gobankrecon' %}">Bank Reconcilation</a></li>
+                      <li><a href="{% url 'gosalesrecords' %}">Sales Records</a></li>
+                        <li><a href="{% url 'goinvoices' %}">Invoices</a></li>
+                          <li><a href="{% url 'gocustomers' %}">Customers</a></li>
+                            <li><a href="{% url 'gopands' %}">Product and Services</a></li>
+                              <li><a href="{% url 'goexpences' %}">Expenses</a></li>
+                                <li><a href="{% url 'gosupplies' %}">Suppliers</a></li>
+                                  <li><a href="{% url 'gocoa' %}">Chart of Accounts</a></li>
+                                    <li><a href="{% url 'gorecon' %}">Reconcile</a></li>
+                                      <li><a href="{% url 'cashposition' %}">Cash Position</a></li>
+                                        <li><a href="{% url 'gorecon' %}">Reconcile</a></li>
+                                          <li><a href="{% url 'gorecon' %}">Cash Position</a></li>
+             
+                 </ul>
                  </div>
 
 
@@ -496,42 +467,35 @@
 
 
   <script>
-    window.onload = function() {
-   var rows = document.querySelectorAll('tr:not(.header)');
- 
-   for (var i = 0; i < rows.length; i++) {
-     rows[i].style.display = 'none';
-   }
- }
- 
- function ContactsearchFX() {
-   var input, filter, table, tr, td, i;
-  
-   input = document.getElementById("myInput");
- 
-   filter = input.value.toUpperCase();
-   table = document.getElementById("myTable");
-   tr = table.getElementsByTagName("tr");
-   for (i = 0; i < tr.length; i++) {
-     td = tr[i].getElementsByTagName("td")[0];
-     if (td) {
-       if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-         tr[i].style.display = "";
-       } else {
-         tr[i].style.display = "none";
- 
-       }
-     }
-   }
-   
-    var rows = document.querySelectorAll('tr:not(.header)');
+
+$(document).ready(function(){
     
-    if (input.value.length == 0) {
-     for (var i = 0; i < rows.length; i++) {
-       rows[i].style.display = 'none';
-     }
-   }
- }
+   $("#btn2").click(function(){
+        $("#box").animate({height: "300px"}, 500, function() {
+    	   $(this).show();
+        });
+    });
+});
+ 
+function myFunction() {
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+
+   
+   
  </script>
 
 
