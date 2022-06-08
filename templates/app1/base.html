@@ -37,15 +37,17 @@
     <!-- App CSS -->
     <link rel="stylesheet" href="{% static 'assets/css/app.css' %}"/>
 
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     
   <style>
     .a {
       font-family: "Poppins", sans-serif;
     }
-    
+    li {
+      list-style: none;
+      padding-top: 10px;
+}
     .one {
-      display:none;
       border-collapse: separate;
       white-space: normal;
       line-height: normal;
@@ -97,15 +99,15 @@
                 <button class="btn btn-search-back" type="button"><i class="bx bx-arrow-back"></i>
                 </button>
               </div>
-              <input type="text" autocomplete="off" id="btn2" onkeyup="myFunction()" onclick="myFunction1()" class="form-control" placeholder="search" />
+              <input type="text" autocomplete="off" id="myInput" onkeyup="filter(this);" onclick="myFunction1()" class="form-control" placeholder="search" />
               <div class="input-group-append">
                 <button class="btn btn-search" type="button"><i class="lni lni-search-alt"></i>
                 </button>
               </div>
-              <div class=" mt-5" id="box"  style="z-index:1;position:absolute; 
-              background-color: #213b52;width:550px;">
+              <div class=" mt-5" id="myDIV" style="z-index:1;position:absolute; 
+              background-color: #213b52;width:550px;height:1px;">
               
-                 <ul id="myUL" class="one newade" style="list-style: none;">
+                 <ul id="myList" class="one" style="background-color: #213b52;">
                   <li><a href="{% url 'godash' %}">Dashboard</a></li>
                   <li><a href="{% url 'goonlinebank' %}">Online Banking</a></li>
                   <li><a href="{% url 'goofflinebank' %}">Offline Banking</a></li>
@@ -469,30 +471,19 @@
   <script>
 
 $(document).ready(function(){
-    
-   $("#btn2").click(function(){
-        $("#box").animate({height: "300px"}, 500, function() {
-    	   $(this).show();
-        });
-    });
+  $("#myList li").hide();
+
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    if (value !== '' ) {
+    $("#myList li").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });   
+    } else {
+      $("#myList li").hide();   
+    }    
+  });
 });
- 
-function myFunction() {
-    var input, filter, ul, li, a, i, txtValue;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    ul = document.getElementById("myUL");
-    li = ul.getElementsByTagName("li");
-    for (i = 0; i < li.length; i++) {
-        a = li[i].getElementsByTagName("a")[0];
-        txtValue = a.textContent || a.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            li[i].style.display = "";
-        } else {
-            li[i].style.display = "none";
-        }
-    }
-}
 
    
    
