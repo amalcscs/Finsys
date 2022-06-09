@@ -201,18 +201,18 @@
                                     <div class="valid-feedback">Looks good!</div>
                                 </div>
 
-                                {% for message in messages %}
+                                <!-- {% for message in messages %}
                                 {% if message %}
                                     <div class="alert">
                                         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
                                         {{ message }}
                                     </div>
                                 {% endif %}
-                            {% endfor %}
+                            {% endfor %} -->
 
                                 <div class="col">
                                     <label for="validationCustom02">Gmail</label>
-                                    <input type="email" class="form-control" id="validationCustom02" name="gmail"
+                                    <input type="email" class="form-control" id="gmail" name="gmail"
                                            required style="background-color: #2f516f;color: white;">
                                     <div class="valid-feedback">Looks good!</div>
                                 </div>
@@ -705,7 +705,29 @@
             </div>
         </div>
     </div>
+<script>
+      //static/js/script.js
+$(document).ready(function(){
+    $("#gmail").change(function () {
+      var gmail = $(this).val();
+ 
+      $.ajax({
+        url: 'validate_username',
+        data: {
+          'gmail': gmail
+        },
+        dataType: 'json',
+        success: function (data) {
+          if (data.is_taken) {
+            alert("Email already exists.");
+          }
+        }
+      });
+ 
+    });
+});
 
+ </script>
 
     <script>
         const sign_in_btn = document.querySelector("#sign-in-btn");
@@ -737,6 +759,6 @@
             }
             return true;
         }
-    </script>
+    </script> -->
 
 {% endblock %}

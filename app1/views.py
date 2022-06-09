@@ -1096,13 +1096,18 @@ def goaddemp(request):
 def employees(request):
     try:
         cmp1 = company.objects.get(id=request.session['uid'])
-        if employee.objects.filter(gmail=request.POST['gmail']).exists():
-            emp = employee.objects.filter(cid=cmp1).all()
-            context = {'employee': emp, 'cmp1': cmp1}
-            messages.info(
-                        request, 'This email already exists. Please enter valid Email')
-            return redirect('goemployee')
-        elif request.method == 'POST':
+        # if employee.objects.filter(aadhaarnumber=request.POST['aadhaarnumber']).exists() or employee.objects.filter(
+        #         employeenumber=request.POST['employeenumber']).exists():
+        #     emp = employee.objects.filter(cid=cmp1).all()
+        #     context = {'employee': emp, 'cmp1': cmp1}
+        #     return redirect('goemployee')
+        # if employee.objects.filter(gmail=request.POST['gmail']).exists():
+        #     emp = employee.objects.filter(cid=cmp1).all()
+        #     context = {'employee': emp, 'cmp1': cmp1}
+        #     messages.info(
+        #                 request, 'This email already exists. Please enter valid Email')
+        #     return redirect('goemployee')
+        if request.method == 'POST':
                 emp11=employee()
                 emp11.name=request.POST['name']
                 emp11.joiningdate=request.POST['joiningdate']
@@ -1164,6 +1169,17 @@ def employees(request):
                 return redirect('goemployee')
     except:
         return redirect('goemployee')
+
+@login_required(login_url='regcomp')
+def validate_username(request):
+    gmail = request.GET.get('gmail', None)
+    print("amal")
+    data = {
+        'is_taken': employee.objects.filter(gmail=gmail).exists()
+    }
+    if data['is_taken']:
+        data['error_message'] = 'Email already exists.'
+    return JsonResponse(data)
 
 
 @login_required(login_url='regcomp')

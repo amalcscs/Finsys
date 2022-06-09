@@ -228,6 +228,7 @@ urlpatterns = [
 
     re_path(r'^goemoliyee$', views.goemployee, name='goemployee'),
     re_path(r'^goaddemp$', views.goaddemp, name='goaddemp'),
+    re_path(r'^validate_username/$', views.validate_username, name='validate_username'),
 
     re_path(r'^employees$', views.employees, name='employees'),
     re_path(r'^empedit/(?P<employeeid>\d+)$', views.empedit, name='empedit'),
