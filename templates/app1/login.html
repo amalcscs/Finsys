@@ -12,6 +12,8 @@
     </script>
     <title>Fin sYs</title>
     <link rel="icon" href="{% static 'assets/images/favicon-32x32.png' %}" type="image/png"/>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
 
@@ -487,7 +489,7 @@
                 </div>
                 <div class="input-field">
                     <i class="fas fa-envelope"></i>
-                    <input type="email" placeholder="Email" name="email" required/>
+                    <input type="email" placeholder="Email" name="email" id="email" required/>
                 </div>
                 <div class="input-field">
                     <i class="fas fa-user"></i>
@@ -566,6 +568,30 @@
         }
         return true;
     }
+</script>
+
+<script>
+    //static/js/script.js
+$(document).ready(function(){
+  $("#email").change(function () {
+    var email = $(this).val();
+
+    $.ajax({
+      url: 'Signup_emailval',
+      data: {
+        'email': email
+      },
+      dataType: 'json',
+      success: function (data) {
+        if (data.is_taken) {
+          alert("Email already exists.");
+        }
+      }
+    });
+
+  });
+});
+
 </script>
 </body>
 </html>

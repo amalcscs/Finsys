@@ -43,10 +43,10 @@ def create(request):
                     messages.info(
                         request, 'This username already exists. Sign up again')
                     return render(request, 'app1/login.html')
-                elif User.objects.filter(email=email).exists():
-                    messages.info(
-                        request, 'This email already exists. Please enter valid Email')
-                    return render(request, 'app1/login.html')
+                # elif User.objects.filter(email=email).exists():
+                #     messages.info(
+                #         request, 'This email already exists. Please enter valid Email')
+                #     return render(request, 'app1/login.html')
                 else:
                     user = User.objects.create_user(first_name=firstname, last_name=lastname, email=email,
                                                     username=username, password=password)
@@ -58,6 +58,17 @@ def create(request):
             return redirect('')
     except:
         return redirect('')
+
+
+def Signup_emailval(request):
+    email = request.GET.get('email', None)
+ 
+    data = {
+        'is_taken': User.objects.filter(email=email).exists()
+    }
+    if data['is_taken']:
+        data['error_message'] = 'Email already exists.'
+    return JsonResponse(data)
 
 
 def register(request, id):
@@ -1171,7 +1182,7 @@ def employees(request):
         return redirect('goemployee')
 
 @login_required(login_url='regcomp')
-def validate_username(request):
+def Employee_gmailval(request):
     gmail = request.GET.get('gmail', None)
     print("amal")
     data = {

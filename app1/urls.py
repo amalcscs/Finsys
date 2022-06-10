@@ -4,6 +4,7 @@ from . import views
 urlpatterns = [
     re_path(r'^$', views.index, name='index'),
     re_path(r'^go$', views.go, name='go'),
+    re_path(r'^Signup_emailval/$', views.Signup_emailval, name='Signup_emailval'),
     re_path(r'^godash$', views.godash, name='godash'),
     re_path(r'^logout$', views.logout, name='logout'),
     re_path(r'^something$', views.something, name='something'),
@@ -228,7 +229,7 @@ urlpatterns = [
 
     re_path(r'^goemoliyee$', views.goemployee, name='goemployee'),
     re_path(r'^goaddemp$', views.goaddemp, name='goaddemp'),
-    re_path(r'^validate_username/$', views.validate_username, name='validate_username'),
+    re_path(r'^Employee_gmailval/$', views.Employee_gmailval, name='Employee_gmailval'),
 
     re_path(r'^employees$', views.employees, name='employees'),
     re_path(r'^empedit/(?P<employeeid>\d+)$', views.empedit, name='empedit'),
