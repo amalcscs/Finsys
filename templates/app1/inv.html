@@ -280,7 +280,7 @@
                                             <img id="file-ip-1-preview">
                                         </div>
                                         <label for="file-ip-1">Upload Image</label>
-                                        <input type="file" id="file-ip-1" name="image" accept="image/*"
+                                        <input type="file" id="file-ip-1" name="image" accept="image/*" required
                                                onchange="showPreview(event);"/>
                                     </div>
                                 </center>
@@ -447,7 +447,7 @@
                                                        required>
                                                 <div class="form-check mt-1">
                                                     <input class="form-check-input" type="checkbox"
-                                                           value="inclusive"
+                                                           value="inclusive" required
                                                            id="inclusive">
                                                     <label style="color: white;">Inclusive of tax</label>
                                                 </div>
@@ -608,7 +608,7 @@
                                                 <label style="color: white; text-align: left;">Reverse
                                                     Charge %</label>
                                                 <input type="text" name="revcharge" class="form-control"
-                                                       id="validationCustom03" value='0' style="background-color: #2a4964; color: white;">
+                                                       id="validationCustom03" required value='0' style="background-color: #2a4964; color: white;">
                                             </div>
                                             <div class="col-md-6 mt-3">
                                                 <label for="validationCustom03" style="color: white;">Preferred
@@ -818,4 +818,14 @@
             })();
         </script>
     {% endif %}
+
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
 {% endblock %}

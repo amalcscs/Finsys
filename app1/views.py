@@ -635,10 +635,9 @@ def gopands(request):
                 l_count += 1
         context = {'inv': inv, 'cmp1': cmp1, 'bun': bun, 'noninv': noninv, 'ser': ser, 'suppliers': suppliers,
                    'l_count': l_count, 'o_count': o_count, 'invcol': invcol, 'noninvcol': noninvcol, 'buncol': buncol}
-        return render(request, 'app1/pands.html', context)
+        return render(request,'app1/pands.html',context)
     except:
         return redirect('gopands')
-
 
 @login_required(login_url='regcomp')
 def goexpences(request):
@@ -9601,6 +9600,7 @@ def addinv(request):
             img = request.FILES["image"]
             inv.image = img
             inv.save()
+            
             invacnt = request.POST['invacnt']
             account = accounts1.objects.get(name=invacnt, cid=cmp1)
             account1 = accounts1.objects.get(
@@ -9615,7 +9615,8 @@ def addinv(request):
                     account1.save()
             except:
                 pass
-            return redirect('gopands')
+            messages.info(request, 'Product added successfully!')
+            return render(request,'pands.html',{'msg_success':msg_success})
         else:
             return redirect('gopands')
     except:
@@ -9625,6 +9626,7 @@ def addinv(request):
 @login_required(login_url='regcomp')
 def ivndisplay(request):
     try:
+        cmp1 = company.objects.get(id=request.session["uid"])
         if request.method == 'GET':
             print('hellow')
             inv = inventory.objects.filter(cid=cmp1).all()
