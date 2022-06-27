@@ -270,7 +270,7 @@
                             </div>
                         </div>
                     </div>
-                    <form action="addinv" method="post" enctype="multipart/form-data" class="needs-validation">
+                    <form action="addinv" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
                         {% csrf_token %}
                         <div class="row">
                             <div class="col">
@@ -827,5 +827,7 @@
         {% endfor %}
     </ul>
     {% endif %}
+
+
 
 {% endblock %}
