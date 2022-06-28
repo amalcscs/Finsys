@@ -17,7 +17,10 @@ import itertools
 
 
 def index(request):
-    return render(request, 'app1/index.html')
+    # user = User.objects.all()
+    # for u in user:
+    # user.set_password("maria123@")
+    return render(request,'app1/index.html')
 
 
 def something(request):
