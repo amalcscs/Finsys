@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     re_path(r'^$', views.index, name='index'),
+    re_path(r'^index1$', views.index1, name='index1'),
     re_path(r'^go$', views.go, name='go'),
     re_path(r'^Signup_emailval/$', views.Signup_emailval, name='Signup_emailval'),
     re_path(r'^godash$', views.godash, name='godash'),

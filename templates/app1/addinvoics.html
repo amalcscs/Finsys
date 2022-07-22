@@ -66,7 +66,7 @@
     color: white;
   }
 </style>
-<form action="invcreate" method="post" class="needs-validation" novalidate>
+<form action="{% url 'invcreate' %}" method="post" class="needs-validation" novalidate enctype="multipart/form-data">
   {% csrf_token %}
   <div class="page-content">
     <!--breadcrumb-->
@@ -103,7 +103,7 @@
                   <option value="NIL" disabled selected>Select Customer</option>
                   {% for cust in customers %}
                   {% if cust.cid_id == cmp1.cid %}
-                  <option text="{{ cust.customerid }}" value="{{ cust.firstname }} {{ cust.lastname }}">{{ cust.firstname }} {{ cust.lastname }}</option>
+                  <option text="{{ cust.customerid }}" value="{{ cust.firstname }}">{{ cust.firstname }} </option>
                   {% endif %}
                   {% endfor %}
                 </select>
@@ -112,7 +112,7 @@
                 </a>
               </div>
             </div>
-            <div class="col-md-3 mt-3">
+           <div class="col-md-3 mt-3">
               <label class="col-form-label">Email </label>
               <input class="custom-select" name="email" placeholder="Email" required style="background-color: #2f516f; color: white;" id="email">
             </div>
@@ -1170,7 +1170,7 @@
                 </tbody>
               </table>
             </div>
-          </div>
+          </div> -->
           <div class="row">
             <div class="col-md-10 mt-3"></div>
             <div class="col-md-2 mt-3">
