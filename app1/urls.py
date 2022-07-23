@@ -103,8 +103,8 @@ urlpatterns = [
 
     re_path(r'^salesrecipts$', views.salesrecipts, name='salesrecipts'),
     re_path(r'^addsalesrecipts$', views.addsalesrecipts, name='addsalesrecipts'),
-    re_path(r'^editsale/(?P<id>\d+)$', views.editsale, name='editsale'),
-    re_path(r'^showsales/(?P<id>\d+)$', views.showsales, name='showsales'),
+    re_path(r'^editsale/(?P<salesrecptsid>\d+)$', views.editsale, name='editsale'),
+    re_path(r'^showsales/(?P<salesrecptsid>\d+)$', views.showsales, name='showsales'),
     re_path(r'^editsale/updatesale/(?P<id>\d+)$', views.updatesale, name='updatesale'),
     re_path(r'^deletesale/(?P<id>\d+)$', views.deletesale, name='deletesale'),
 
@@ -116,7 +116,7 @@ urlpatterns = [
 
     re_path(r'^gosaletimeactivity$', views.gosaletimeactivity, name='gosaletimeactivity'),
     re_path(r'^saletimectivity$', views.saletimectivity, name='saletimectivity'),
-    re_path(r'^edittimesale/(?P<id>\d+)$', views.edittimesale, name='edittimesale'),
+    re_path(r'^edittimesale/(?P<timeactsaleid>\d+)$', views.edittimesale, name='edittimesale'),
     re_path(r'^edittimesale/updattimesale/(?P<id>\d+)$', views.updattimesale, name='updattimesale'),
     re_path(r'^deletetimesale/(?P<id>\d+)$', views.deletetimesale, name='deletetimesale'),
 
@@ -163,8 +163,8 @@ urlpatterns = [
     re_path(r'^paymentcreate$', views.paymentcreate, name='paymentcreate'),
     re_path(r'^deletepayment/(?P<id>\d+)$', views.deletepayment, name='deletepayment'),
     re_path(r'^deletecredit/(?P<id>\d+)$', views.deletecredit, name='deletecredit'),
-    re_path(r'^editcredit/(?P<id>\d+)$', views.editcredit, name='editcredit'),
-    re_path(r'^showcredit/(?P<id>\d+)$', views.showcredit, name='showcredit'),
+    re_path(r'^editcredit/(?P<creditnoteid>\d+)$', views.editcredit, name='editcredit'),
+    re_path(r'^showcredit/(?P<creditnoteid>\d+)$', views.showcredit, name='showcredit'),
     re_path(r'^editcredit/updatecredit/(?P<id>\d+)$', views.updatecredit, name='updatecredit'),
     # re_path(r'^editpayment/(?P<id>\d+)$', views.editpayment, name='editpayment'),
     # re_path(r'^editpayment/updatepayment/(?P<id>\d+)$', views.updatepayment, name='updatepayment'),
@@ -180,10 +180,10 @@ urlpatterns = [
     re_path(r'^estcreate$', views.estcreate, name='estcreate'),
     re_path(r'^delayed$', views.delayed, name='delayed'),
     re_path(r'^delcreate$', views.delcreate, name='delcreate'),
-    re_path(r'^editestimate/(?P<id>\d+)$', views.editestimate, name='editestimate'),
+    re_path(r'^editestimate/(?P<estimateid>\d+)$', views.editestimate, name='editestimate'),
     re_path(r'^editestimate/updateestimate/(?P<id>\d+)$', views.updateestimate, name='updateestimate'),
     re_path(r'^deleteestimate/(?P<id>\d+)$', views.deleteestimate, name='deleteestimate'),
-    re_path(r'^editdelayed/(?P<id>\d+)$', views.editdelayed, name='editdelayed'),
+    re_path(r'^editdelayed/(?P<delayedchargeid>\d+)$', views.editdelayed, name='editdelayed'),
     re_path(r'^editdelayed/delayedupdate/(?P<id>\d+)$', views.delayedupdate, name='delayedupdate'),
     re_path(r'^deletedelay/(?P<id>\d+)$', views.deletedelay, name='deletedelay'),
 

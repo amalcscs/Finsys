@@ -1812,157 +1812,123 @@ def salesrecipts(request):
     try:
         cmp1 = company.objects.get(id=request.session["uid"])
         if request.method == "POST":
-            salee = salesrecpts(saleno='1000',
-                                saledate=request.POST['saledate'],
-                                salename=request.POST['salename'],
-                                saleaddress=request.POST['saleaddress'],
-                                saleemail=request.POST['saleemail'],
-                                salepay=request.POST['salepay'],
-                                salerefno=request.POST['salerefno'],
-                                saledeposit=request.POST['saledeposit'],
-                                salepro=request.POST['salepro'],
-                                salesplace=request.POST['salesplace'],
-                                salehsn=request.POST['salehsn'],
-                                saledescription=request.POST['saledescription'],
-                                saleqty=request.POST['saleqty'],
-                                saleprice=request.POST['saleprice'],
-                                saaletotal=request.POST['saaletotal'],
-                                salesubtotal=request.POST['salesubtotal'],
-                                tax=request.POST['tax'],
-                                saletaxamount=request.POST['saletaxamount'],
-                                salegrandtotal=request.POST['salegrandtotal'],
-                                category2=request.POST['category2'],
-                                categoryhsn2=request.POST['categoryhsn2'],
-                                descrptin2=request.POST['descrptin2'],
-                                catqty2=request.POST['catqty2'],
-                                catprice2=request.POST['catprice2'],
-                                cattotal2=request.POST['cattotal2'],
-                                tax1=request.POST['tax1'],
+                salee = salesrecpts()
+                salee.saleno='1000'
+                salee.saledate=request.POST['saledate']
+                salee.salename=request.POST['salename']
+                salee.saleaddress=request.POST['saleaddress']
+                salee.saleemail=request.POST['saleemail']
+                salee.salepay=request.POST['salepay']
+                salee.salerefno=request.POST['salerefno']
+                salee.saledeposit=request.POST['saledeposit']
+                salee.salepro=request.POST['salepro']
+                salee.salesplace=request.POST['salesplace']
+                salee.salehsn=request.POST['salehsn']
+                salee.saledescription=request.POST['saledescription']
+                salee.saleqty=request.POST['saleqty']
+                salee.saleprice=request.POST['saleprice']
+                salee.saaletotal=request.POST['saaletotal']
+                salee.salesubtotal=request.POST['salesubtotal']
+                salee.tax=request.POST['tax']
+                salee.saletaxamount=request.POST['saletaxamount']
+                salee.salegrandtotal=request.POST['salegrandtotal']
+                salee.category2=request.POST['category2']
+                salee.categoryhsn2=request.POST['categoryhsn2']
+                salee.descrptin2=request.POST['descrptin2']
+                salee.catqty2=request.POST['catqty2']
+                salee.catprice2=request.POST['catprice2']
+                salee.cattotal2=request.POST['cattotal2']
+                salee.tax1=request.POST['tax1']
 
-                                category3=request.POST['category3'],
-                                categoryhsn3=request.POST['categoryhsn3'],
-                                descrptin3=request.POST['descrptin3'],
-                                catqty3=request.POST['catqty3'],
-                                catprice3=request.POST['catprice3'],
-                                cattotal3=request.POST['cattotal3'],
-                                tax2=request.POST['tax2'],
-                                category4=request.POST['category4'],
-                                categoryhsn4=request.POST['categoryhsn4'],
-                                descrptin4=request.POST['descrptin4'],
-                                catqty4=request.POST['catqty4'],
-                                catprice4=request.POST['catprice4'],
-                                cattotal4=request.POST['cattotal4'],
-                                tax3=request.POST['tax3'],
-                                cid=cmp1)
-            salee.save()
-            salee.saleno = int(salee.saleno) + salee.salesrecptsid
-            salee.save()
-            placosupply = request.POST['salesplace']
-            salegrandtotal = float(request.POST['salegrandtotal'])
-            saledeposit = request.POST['saledeposit']
-            try:
-                if salegrandtotal != 0:
-                    accoun = accounts1.objects.get(name=saledeposit, cid=cmp1)
-                    accoun.balance = accoun.balance + salegrandtotal
-                    accoun.save()
-            except:
-                pass
-            try:
-                if salegrandtotal != 0:
-                    accoun = accounts.objects.get(name=saledeposit, cid=cmp1)
-                    accoun.balance = accoun.balance + salegrandtotal
-                    accoun.save()
-            except:
-                pass
-            taxamnt = [float(request.POST['taxamount']), float(request.POST['taxamount1']),
-                    float(request.POST['taxamount2']),
-                    float(request.POST['taxamount3'])]
-            qty = [float(request.POST['saleqty']), float(request.POST['catqty2']),
-                float(request.POST['catqty3']),
-                float(request.POST['catqty4'])]
-            totals = [float(request.POST['saaletotal']), float(request.POST['cattotal2']),
-                    float(request.POST['cattotal3']),
-                    float(request.POST['cattotal4'])]
-            product = [request.POST['salepro'], request.POST['category2'], request.POST['category3'],
-                    request.POST['category4']]
-            for (p, q, t, tx) in zip(product, qty, totals, taxamnt):
+                salee.category3=request.POST['category3']
+                salee.categoryhsn3=request.POST['categoryhsn3']
+                salee.descrptin3=request.POST['descrptin3']
+                salee.catqty3=request.POST['catqty3']
+                salee.catprice3=request.POST['catprice3']
+                salee.cattotal3=request.POST['cattotal3']
+                salee.tax2=request.POST['tax2']
+                salee.category4=request.POST['category4']
+                salee.categoryhsn4=request.POST['categoryhsn4']
+                salee.descrptin4=request.POST['descrptin4']
+                salee.catqty4=request.POST['catqty4']
+                salee.catprice4=request.POST['catprice4']
+                salee.cattotal4=request.POST['cattotal4']
+                salee.tax3=request.POST['tax3']
+                salee.cid=cmp1
+                salee.save()
+                salee.saleno = int(salee.saleno) + salee.salesrecptsid
+                salee.save()
+                placosupply = request.POST['salesplace']
+                salegrandtotal = float(request.POST['salegrandtotal'])
+                saledeposit = request.POST['saledeposit']
                 try:
-                    if inventory.objects.get(name=p, cid=cmp1):
-                        invent = inventory.objects.get(name=p, cid=cmp1)
-                        invent.initialqty = int(invent.initialqty) - int(q)
-                        invent.save()
-                        cxq = float(invent.cost) * float(q)
-                        invenacnt = invent.invacnt
-                        if accounts1.objects.get(name=invenacnt, cid=cmp1):
-                            accoun = accounts1.objects.get(
-                                name=invenacnt, cid=cmp1)
-                            accoun.balance = accoun.balance - cxq
-                            accoun.save()
-                        elif accounts.objects.get(name=invenacnt, cid=cmp1):
-                            accoun = accounts.objects.get(name=invenacnt, cid=cmp1)
-                            accoun.balance = accoun.balance - cxq
-                            accoun.save()
-                        else:
-                            pass
-                        if accounts1.objects.get(name=invent.incomeacnt, cid=cmp1):
-                            accoun = accounts1.objects.get(
-                                name=invent.incomeacnt, cid=cmp1)
-                            accoun.balance = accoun.balance + t
-                            accoun.save()
-                        elif accounts.objects.get(name=invent.incomeacnt, cid=cmp1):
-                            accoun = accounts.objects.get(
-                                name=invent.incomeacnt, cid=cmp1)
-                            accoun.balance = accoun.balance + t
-                            accoun.save()
-                        else:
-                            pass
-                        if accounts1.objects.get(name=invent.expacnt, cid=cmp1):
-                            accoun = accounts1.objects.get(
-                                name=invent.expacnt, cid=cmp1)
-                            accoun.balance = accoun.balance + cxq
-                            accoun.save()
-                        elif accounts.objects.get(name=invent.expacnt, cid=cmp1):
-                            accoun = accounts.objects.get(
-                                name=invent.expacnt, cid=cmp1)
-                            accoun.balance = accoun.balance + cxq
-                            accoun.save()
-                        else:
-                            pass
-                        if placosupply == cmp1.state:
-                            tax = tx / 2
-                            accocgst = accounts1.objects.get(
-                                name='Output CGST', cid=cmp1)
-                            accocgst.balance = accocgst.balance + tax
-                            accocgst.save()
-                            accosgst = accounts1.objects.get(
-                                name='Output SGST', cid=cmp1)
-                            accosgst.balance = accosgst.balance + tax
-                            accosgst.save()
-                        else:
-                            accoigst = accounts1.objects.get(
-                                name='Output IGST', cid=cmp1)
-                            accoigst.balance = accoigst.balance + tx
-                            accoigst.save()
+                    if salegrandtotal != 0:
+                        accoun = accounts1.objects.get(name=saledeposit, cid=cmp1)
+                        accoun.balance = accoun.balance + salegrandtotal
+                        accoun.save()
                 except:
                     pass
                 try:
-                    if noninventory.objects.get(name=p, cid=cmp1):
-                        noninvent = noninventory.objects.get(name=p, cid=cmp1)
-                        noninvent.qty = int(noninvent.qty) - int(q)
-                        noninvent.save()
-                        if accounts1.objects.get(name=noninvent.income, cid=cmp1):
-                            accoun = accounts1.objects.get(
-                                name=noninvent.income, cid=cmp1)
-                            accoun.balance = accoun.balance + t
-                            accoun.save()
-                        elif accounts.objects.get(name=noninvent.income, cid=cmp1):
-                            accoun = accounts.objects.get(
-                                name=noninvent.income, cid=cmp1)
-                            accoun.balance = accoun.balance + t
-                            accoun.save()
-                        else:
-                            pass
-                        try:
+                    if salegrandtotal != 0:
+                        accoun = accounts.objects.get(name=saledeposit, cid=cmp1)
+                        accoun.balance = accoun.balance + salegrandtotal
+                        accoun.save()
+                except:
+                    pass
+                taxamnt = [float(request.POST['taxamount']), float(request.POST['taxamount1']),
+                        float(request.POST['taxamount2']),
+                        float(request.POST['taxamount3'])]
+                qty = [float(request.POST['saleqty']), float(request.POST['catqty2']),
+                    float(request.POST['catqty3']),
+                    float(request.POST['catqty4'])]
+                totals = [float(request.POST['saaletotal']), float(request.POST['cattotal2']),
+                        float(request.POST['cattotal3']),
+                        float(request.POST['cattotal4'])]
+                product = [request.POST['salepro'], request.POST['category2'], request.POST['category3'],
+                        request.POST['category4']]
+                for (p, q, t, tx) in zip(product, qty, totals, taxamnt):
+                    try:
+                        if inventory.objects.get(name=p, cid=cmp1):
+                            invent = inventory.objects.get(name=p, cid=cmp1)
+                            invent.initialqty = int(invent.initialqty) - int(q)
+                            invent.save()
+                            cxq = float(invent.cost) * float(q)
+                            invenacnt = invent.invacnt
+                            if accounts1.objects.get(name=invenacnt, cid=cmp1):
+                                accoun = accounts1.objects.get(
+                                    name=invenacnt, cid=cmp1)
+                                accoun.balance = accoun.balance - cxq
+                                accoun.save()
+                            elif accounts.objects.get(name=invenacnt, cid=cmp1):
+                                accoun = accounts.objects.get(name=invenacnt, cid=cmp1)
+                                accoun.balance = accoun.balance - cxq
+                                accoun.save()
+                            else:
+                                pass
+                            if accounts1.objects.get(name=invent.incomeacnt, cid=cmp1):
+                                accoun = accounts1.objects.get(
+                                    name=invent.incomeacnt, cid=cmp1)
+                                accoun.balance = accoun.balance + t
+                                accoun.save()
+                            elif accounts.objects.get(name=invent.incomeacnt, cid=cmp1):
+                                accoun = accounts.objects.get(
+                                    name=invent.incomeacnt, cid=cmp1)
+                                accoun.balance = accoun.balance + t
+                                accoun.save()
+                            else:
+                                pass
+                            if accounts1.objects.get(name=invent.expacnt, cid=cmp1):
+                                accoun = accounts1.objects.get(
+                                    name=invent.expacnt, cid=cmp1)
+                                accoun.balance = accoun.balance + cxq
+                                accoun.save()
+                            elif accounts.objects.get(name=invent.expacnt, cid=cmp1):
+                                accoun = accounts.objects.get(
+                                    name=invent.expacnt, cid=cmp1)
+                                accoun.balance = accoun.balance + cxq
+                                accoun.save()
+                            else:
+                                pass
                             if placosupply == cmp1.state:
                                 tax = tx / 2
                                 accocgst = accounts1.objects.get(
@@ -1978,96 +1944,96 @@ def salesrecipts(request):
                                     name='Output IGST', cid=cmp1)
                                 accoigst.balance = accoigst.balance + tx
                                 accoigst.save()
-                        except:
-                            pass
-                except:
-                    pass
-            btaxamnt = [float(request.POST['taxamount11']), float(request.POST['taxamount12']), float(request.POST['taxamount13']), float(request.POST['taxamount14']), float(request.POST['taxamount21']), float(request.POST['taxamount22']), float(request.POST['taxamount23']), float(request.POST['taxamount24']), float(
-                request.POST['taxamount31']), float(request.POST['taxamount32']), float(request.POST['taxamount33']), float(request.POST['taxamount34']), float(request.POST['taxamount41']), float(request.POST['taxamount42']), float(request.POST['taxamount43']), float(request.POST['taxamount44'])]
-            bqty = [float(request.POST['qty11']), float(request.POST['qty12']), float(request.POST['qty13']), float(request.POST['qty14']), float(request.POST['qty21']), float(request.POST['qty22']), float(request.POST['qty23']), float(request.POST['qty24']), float(
-                request.POST['qty31']), float(request.POST['qty32']), float(request.POST['qty33']), float(request.POST['qty34']), float(request.POST['qty41']), float(request.POST['qty42']), float(request.POST['qty43']), float(request.POST['qty44'])]
-            btotals = [float(request.POST['total11']), float(request.POST['total12']), float(request.POST['total13']), float(request.POST['total14']), float(request.POST['total21']), float(request.POST['total22']), float(request.POST['total23']), float(request.POST['total24']), float(
-                request.POST['total31']), float(request.POST['total32']), float(request.POST['total33']), float(request.POST['total34']), float(request.POST['total41']), float(request.POST['total42']), float(request.POST['total43']), float(request.POST['total44'])]
-            bproduct = [request.POST['product11'], request.POST['product12'], request.POST['product13'], request.POST['product14'], request.POST['product21'], request.POST['product22'], request.POST['product23'], request.POST['product24'],
-                        request.POST['product31'], request.POST['product32'], request.POST['product33'], request.POST['product34'], request.POST['product41'], request.POST['product42'], request.POST['product43'], request.POST['product44']]
-            for (p, q, t, tx) in zip(bproduct, bqty, btotals, btaxamnt):
-                try:
-                    if inventory.objects.get(name=p, cid=cmp1):
-                        invent = inventory.objects.get(name=p, cid=cmp1)
-                        invent.initialqty = int(invent.initialqty) - int(q)
-                        invent.save()
-                        cxq = float(invent.cost) * float(q)
-                        invenacnt = invent.invacnt
-                        if accounts1.objects.get(name=invenacnt, cid=cmp1):
-                            accoun = accounts1.objects.get(
-                                name=invenacnt, cid=cmp1)
-                            accoun.balance = accoun.balance - cxq
-                            accoun.save()
-                        elif accounts.objects.get(name=invenacnt, cid=cmp1):
-                            accoun = accounts.objects.get(name=invenacnt, cid=cmp1)
-                            accoun.balance = accoun.balance - cxq
-                            accoun.save()
-                        else:
-                            pass
-                        if accounts1.objects.get(name=invent.incomeacnt, cid=cmp1):
-                            accoun = accounts1.objects.get(
-                                name=invent.incomeacnt, cid=cmp1)
-                            accoun.balance = accoun.balance + t
-                            accoun.save()
-                        elif accounts.objects.get(name=invent.incomeacnt, cid=cmp1):
-                            accoun = accounts.objects.get(
-                                name=invent.incomeacnt, cid=cmp1)
-                            accoun.balance = accoun.balance + t
-                            accoun.save()
-                        else:
-                            pass
-                        if accounts1.objects.get(name=invent.expacnt, cid=cmp1):
-                            accoun = accounts1.objects.get(
-                                name=invent.expacnt, cid=cmp1)
-                            accoun.balance = accoun.balance + cxq
-                            accoun.save()
-                        elif accounts.objects.get(name=invent.expacnt, cid=cmp1):
-                            accoun = accounts.objects.get(
-                                name=invent.expacnt, cid=cmp1)
-                            accoun.balance = accoun.balance + cxq
-                            accoun.save()
-                        else:
-                            pass
-                        if placosupply == cmp1.state:
-                            tax = tx / 2
-                            accocgst = accounts1.objects.get(
-                                name='Output CGST', cid=cmp1)
-                            accocgst.balance = accocgst.balance + tax
-                            accocgst.save()
-                            accosgst = accounts1.objects.get(
-                                name='Output SGST', cid=cmp1)
-                            accosgst.balance = accosgst.balance + tax
-                            accosgst.save()
-                        else:
-                            accoigst = accounts1.objects.get(
-                                name='Output IGST', cid=cmp1)
-                            accoigst.balance = accoigst.balance + tx
-                            accoigst.save()
-                except:
-                    pass
-                try:
-                    if noninventory.objects.get(name=p, cid=cmp1):
-                        noninvent = noninventory.objects.get(name=p, cid=cmp1)
-                        noninvent.qty = int(noninvent.qty) - int(q)
-                        noninvent.save()
-                        if accounts1.objects.get(name=noninvent.income, cid=cmp1):
-                            accoun = accounts1.objects.get(
-                                name=noninvent.income, cid=cmp1)
-                            accoun.balance = accoun.balance + t
-                            accoun.save()
-                        elif accounts.objects.get(name=noninvent.income, cid=cmp1):
-                            accoun = accounts.objects.get(
-                                name=noninvent.income, cid=cmp1)
-                            accoun.balance = accoun.balance + t
-                            accoun.save()
-                        else:
-                            pass
-                        try:
+                    except:
+                        pass
+                    try:
+                        if noninventory.objects.get(name=p, cid=cmp1):
+                            noninvent = noninventory.objects.get(name=p, cid=cmp1)
+                            noninvent.qty = int(noninvent.qty) - int(q)
+                            noninvent.save()
+                            if accounts1.objects.get(name=noninvent.income, cid=cmp1):
+                                accoun = accounts1.objects.get(
+                                    name=noninvent.income, cid=cmp1)
+                                accoun.balance = accoun.balance + t
+                                accoun.save()
+                            elif accounts.objects.get(name=noninvent.income, cid=cmp1):
+                                accoun = accounts.objects.get(
+                                    name=noninvent.income, cid=cmp1)
+                                accoun.balance = accoun.balance + t
+                                accoun.save()
+                            else:
+                                pass
+                            try:
+                                if placosupply == cmp1.state:
+                                    tax = tx / 2
+                                    accocgst = accounts1.objects.get(
+                                        name='Output CGST', cid=cmp1)
+                                    accocgst.balance = accocgst.balance + tax
+                                    accocgst.save()
+                                    accosgst = accounts1.objects.get(
+                                        name='Output SGST', cid=cmp1)
+                                    accosgst.balance = accosgst.balance + tax
+                                    accosgst.save()
+                                else:
+                                    accoigst = accounts1.objects.get(
+                                        name='Output IGST', cid=cmp1)
+                                    accoigst.balance = accoigst.balance + tx
+                                    accoigst.save()
+                            except:
+                                pass
+                    except:
+                        pass
+                btaxamnt = [float(request.POST['taxamount11']), float(request.POST['taxamount12']), float(request.POST['taxamount13']), float(request.POST['taxamount14']), float(request.POST['taxamount21']), float(request.POST['taxamount22']), float(request.POST['taxamount23']), float(request.POST['taxamount24']), float(
+                    request.POST['taxamount31']), float(request.POST['taxamount32']), float(request.POST['taxamount33']), float(request.POST['taxamount34']), float(request.POST['taxamount41']), float(request.POST['taxamount42']), float(request.POST['taxamount43']), float(request.POST['taxamount44'])]
+                bqty = [float(request.POST['qty11']), float(request.POST['qty12']), float(request.POST['qty13']), float(request.POST['qty14']), float(request.POST['qty21']), float(request.POST['qty22']), float(request.POST['qty23']), float(request.POST['qty24']), float(
+                    request.POST['qty31']), float(request.POST['qty32']), float(request.POST['qty33']), float(request.POST['qty34']), float(request.POST['qty41']), float(request.POST['qty42']), float(request.POST['qty43']), float(request.POST['qty44'])]
+                btotals = [float(request.POST['total11']), float(request.POST['total12']), float(request.POST['total13']), float(request.POST['total14']), float(request.POST['total21']), float(request.POST['total22']), float(request.POST['total23']), float(request.POST['total24']), float(
+                    request.POST['total31']), float(request.POST['total32']), float(request.POST['total33']), float(request.POST['total34']), float(request.POST['total41']), float(request.POST['total42']), float(request.POST['total43']), float(request.POST['total44'])]
+                bproduct = [request.POST['product11'], request.POST['product12'], request.POST['product13'], request.POST['product14'], request.POST['product21'], request.POST['product22'], request.POST['product23'], request.POST['product24'],
+                            request.POST['product31'], request.POST['product32'], request.POST['product33'], request.POST['product34'], request.POST['product41'], request.POST['product42'], request.POST['product43'], request.POST['product44']]
+                for (p, q, t, tx) in zip(bproduct, bqty, btotals, btaxamnt):
+                    try:
+                        if inventory.objects.get(name=p, cid=cmp1):
+                            invent = inventory.objects.get(name=p, cid=cmp1)
+                            invent.initialqty = int(invent.initialqty) - int(q)
+                            invent.save()
+                            cxq = float(invent.cost) * float(q)
+                            invenacnt = invent.invacnt
+                            if accounts1.objects.get(name=invenacnt, cid=cmp1):
+                                accoun = accounts1.objects.get(
+                                    name=invenacnt, cid=cmp1)
+                                accoun.balance = accoun.balance - cxq
+                                accoun.save()
+                            elif accounts.objects.get(name=invenacnt, cid=cmp1):
+                                accoun = accounts.objects.get(name=invenacnt, cid=cmp1)
+                                accoun.balance = accoun.balance - cxq
+                                accoun.save()
+                            else:
+                                pass
+                            if accounts1.objects.get(name=invent.incomeacnt, cid=cmp1):
+                                accoun = accounts1.objects.get(
+                                    name=invent.incomeacnt, cid=cmp1)
+                                accoun.balance = accoun.balance + t
+                                accoun.save()
+                            elif accounts.objects.get(name=invent.incomeacnt, cid=cmp1):
+                                accoun = accounts.objects.get(
+                                    name=invent.incomeacnt, cid=cmp1)
+                                accoun.balance = accoun.balance + t
+                                accoun.save()
+                            else:
+                                pass
+                            if accounts1.objects.get(name=invent.expacnt, cid=cmp1):
+                                accoun = accounts1.objects.get(
+                                    name=invent.expacnt, cid=cmp1)
+                                accoun.balance = accoun.balance + cxq
+                                accoun.save()
+                            elif accounts.objects.get(name=invent.expacnt, cid=cmp1):
+                                accoun = accounts.objects.get(
+                                    name=invent.expacnt, cid=cmp1)
+                                accoun.balance = accoun.balance + cxq
+                                accoun.save()
+                            else:
+                                pass
                             if placosupply == cmp1.state:
                                 tax = tx / 2
                                 accocgst = accounts1.objects.get(
@@ -2083,14 +2049,49 @@ def salesrecipts(request):
                                     name='Output IGST', cid=cmp1)
                                 accoigst.balance = accoigst.balance + tx
                                 accoigst.save()
-                        except:
-                            pass
-                except:
-                    pass
+                    except:
+                        pass
+                    try:
+                        if noninventory.objects.get(name=p, cid=cmp1):
+                            noninvent = noninventory.objects.get(name=p, cid=cmp1)
+                            noninvent.qty = int(noninvent.qty) - int(q)
+                            noninvent.save()
+                            if accounts1.objects.get(name=noninvent.income, cid=cmp1):
+                                accoun = accounts1.objects.get(
+                                    name=noninvent.income, cid=cmp1)
+                                accoun.balance = accoun.balance + t
+                                accoun.save()
+                            elif accounts.objects.get(name=noninvent.income, cid=cmp1):
+                                accoun = accounts.objects.get(
+                                    name=noninvent.income, cid=cmp1)
+                                accoun.balance = accoun.balance + t
+                                accoun.save()
+                            else:
+                                pass
+                            try:
+                                if placosupply == cmp1.state:
+                                    tax = tx / 2
+                                    accocgst = accounts1.objects.get(
+                                        name='Output CGST', cid=cmp1)
+                                    accocgst.balance = accocgst.balance + tax
+                                    accocgst.save()
+                                    accosgst = accounts1.objects.get(
+                                        name='Output SGST', cid=cmp1)
+                                    accosgst.balance = accosgst.balance + tax
+                                    accosgst.save()
+                                else:
+                                    accoigst = accounts1.objects.get(
+                                        name='Output IGST', cid=cmp1)
+                                    accoigst.balance = accoigst.balance + tx
+                                    accoigst.save()
+                            except:
+                                pass
+                    except:
+                        pass
         return redirect('gosalesrecords')
+    
     except:
         return redirect('gosalesrecords')
-
 
 @login_required(login_url='regcomp')
 def deletesale(request, id):
@@ -2104,10 +2105,10 @@ def deletesale(request, id):
 
 
 @login_required(login_url='regcomp')
-def editsale(request, id):
+def editsale(request, salesrecptsid):
     try:
         cmp1 = company.objects.get(id=request.session['uid'])
-        custo = salesrecpts.objects.get(salesrecptsid=id)
+        custo = salesrecpts.objects.get(salesrecptsid=salesrecptsid)
         inv = inventory.objects.filter(cid=cmp1)
         bun = bundle.objects.filter(cid=cmp1)
         noninv = noninventory.objects.filter(cid=cmp1)
@@ -2121,32 +2122,30 @@ def editsale(request, id):
 
 
 @login_required(login_url='regcomp')
-def showsales(request, id):
-    try:
+def showsales(request, salesrecptsid):
+    
         cmp1 = company.objects.get(id=request.session['uid'])
         acounts = accounts.objects.filter(cid=cmp1)
         styles = customize.objects.get(selected='selected', cid=cmp1)
         if styles.template == 'classic':
-            custo = salesrecpts.objects.get(salesrecptsid=id)
+            custo = salesrecpts.objects.get(salesrecptsid=salesrecptsid)
             context = {'sale': custo, 'cmp1': cmp1, 'accoun': acounts, 'styles': styles}
             return render(request, 'app1/showsales.html', context)
         elif styles.template == 'modern':
-            custo = salesrecpts.objects.get(salesrecptsid=id)
+            custo = salesrecpts.objects.get(salesrecptsid=salesrecptsid)
             context = {'sale': custo, 'cmp1': cmp1, 'accoun': acounts, 'styles': styles}
             return render(request, 'app1/showsalesmodern.html', context)
         elif styles.template == 'fresh':
-            custo = salesrecpts.objects.get(salesrecptsid=id)
+            custo = salesrecpts.objects.get(salesrecptsid=salesrecptsid)
             context = {'sale': custo, 'cmp1': cmp1, 'accoun': acounts, 'styles': styles}
             return render(request, 'app1/showsalesfresh.html', context)
         elif styles.template == 'friendly':
-            custo = salesrecpts.objects.get(salesrecptsid=id)
+            custo = salesrecpts.objects.get(salesrecptsid=salesrecptsid)
             context = {'sale': custo, 'cmp1': cmp1, 'accoun': acounts, 'styles': styles}
             return render(request, 'app1/showsalesfriendly.html', context)
         else:
             return redirect('gosalesrecords')
-    except:
-        return redirect('gosalesrecords')
-
+    
 
 @login_required(login_url='regcomp')
 def updatesale(request, id):
@@ -2900,27 +2899,41 @@ def gosaletimeactivity(request):
 def saletimectivity(request):
     try:
         cmp1 = company.objects.get(id=request.session["uid"])
-        timsale = timeactsale(timdatesale=request.POST['timdatesale'],
-                              timenamesale=request.POST['timenamesale'],
-                              timecustsale=request.POST['timecustsale'],
-                              timechecksale=request.POST['timechecksale'],
-                              timebillsale=request.POST['timebillsale'],
-                              timecheckksale=request.POST['timecheckksale'],
-                              timestartsale=request.POST['timestartsale'],
-                              timeendsale=request.POST['timeendsale'],
-                              tymesale=request.POST['tymesale'],
-                              timedessale=request.POST['timedessale'], cid=cmp1)
-        timsale.save()
+        if request.method == "POST": 
+            timsale = timeactsale()
+            timsale.timdatesale=request.POST['timdatesale']
+            timsale.timenamesale=request.POST['timenamesale']
+            timsale.timecustsale=request.POST['timecustsale']
+            timsale.timechecksale=request.POST['timechecksale']
+            timsale.timebillsale=request.POST['timebillsale']
+            timsale.timecheckksale=request.POST['timecheckksale']
+            timsale.timestartsale=request.POST['timestartsale']
+            timsale.timeendsale=request.POST['timeendsale']
+            timsale.tymesale=request.POST['tymesale']
+            timsale.timedessale=request.POST['timedessale']
+            timsale.cid=cmp1
+            timsale.save()
+        # timsale = timeactsale(timdatesale=request.POST['timdatesale'],
+        #                       timenamesale=request.POST['timenamesale'],
+        #                       timecustsale=request.POST['timecustsale'],
+        #                       timechecksale=request.POST['timechecksale'],
+        #                       timebillsale=request.POST['timebillsale'],
+        #                       timecheckksale=request.POST['timecheckksale'],
+        #                       timestartsale=request.POST['timestartsale'],
+        #                       timeendsale=request.POST['timeendsale'],
+        #                       tymesale=request.POST['tymesale'],
+        #                       timedessale=request.POST['timedessale'], cid=cmp1)
+        # timsale.save()
         return redirect('gosalesrecords')
     except:
         return redirect('gosalesrecords')
 
 
 @login_required(login_url='regcomp')
-def edittimesale(request, id):
+def edittimesale(request, timeactsaleid):
     try:
-        cmp1 = company.objects.get(cid=request.session['uid'])
-        tym = timeactsale.objects.get(timeactsaleid=id, cid=cmp1)
+        cmp1 = company.objects.get(id=request.session['uid'])
+        tym = timeactsale.objects.get(timeactsaleid=timeactsaleid, cid=cmp1)
         context = {'time': tym, 'cmp1': cmp1}
         return render(request, 'app1/edittimesale.html', context)
     except:
@@ -7086,43 +7099,42 @@ def deletecredit(request, id):
 
 
 @login_required(login_url='regcomp')
-def editcredit(request, id):
-    try:
+def editcredit(request, creditnoteid):
+   
         cmp1 = company.objects.get(id=request.session['uid'])
         inv = inventory.objects.filter(cid=cmp1).all()
         bun = bundle.objects.filter(cid=cmp1).all()
         noninv = noninventory.objects.filter(cid=cmp1).all()
         ser = service.objects.filter(cid=cmp1).all()
-        credi = credit.objects.get(creditnoteid=id)
-        invo = invoice.objects.get(invoiceno=credi.invnum, cid=cmp1)
+        credi = credit.objects.get(creditnoteid=creditnoteid)
+        invo = invoice.objects.filter(invoiceno=credi.invnum, cid=cmp1)
         context = {'credit': credi, 'cmp1': cmp1, 'inv': inv,
                    'noninv': noninv, 'bun': bun, 'ser': ser, 'invo': invo}
         return render(request, 'app1/editcredit.html', context)
-    except:
-        return redirect('gosalesrecords')
+    
 
 
 @login_required(login_url='regcomp')
-def showcredit(request, id):
+def showcredit(request, creditnoteid):
     try:
         cmp1 = company.objects.get(id=request.session['uid'])
-        credi = credit.objects.get(creditnoteid=id)
+        credi = credit.objects.get(creditnoteid=creditnoteid)
         acounts = accounts.objects.filter(cid=cmp1)
         styles = customize.objects.get(selected='selected', cid=cmp1)
         if styles.template == 'classic':
-            custo = salesrecpts.objects.get(salesrecptsid=id)
+            custo = salesrecpts.objects.all()
             context = {'credit': credi, 'cmp1': cmp1, 'accoun': acounts, 'styles': styles}
             return render(request, 'app1/showcredit.html', context)
         elif styles.template == 'modern':
-            custo = salesrecpts.objects.get(salesrecptsid=id)
+            custo = salesrecpts.objects.all()
             context = {'credit': credi, 'cmp1': cmp1, 'accoun': acounts, 'styles': styles}
             return render(request, 'app1/showcreditmodern.html', context)
         elif styles.template == 'fresh':
-            custo = salesrecpts.objects.get(salesrecptsid=id)
+            custo = salesrecpts.objects.all()
             context = {'credit': credi, 'cmp1': cmp1, 'accoun': acounts, 'styles': styles}
             return render(request, 'app1/showcreditfresh.html', context)
         elif styles.template == 'friendly':
-            custo = salesrecpts.objects.get(salesrecptsid=id)
+            custo = salesrecpts.objects.all()
             context = {'credit': credi, 'cmp1': cmp1, 'accoun': acounts, 'styles': styles}
             return render(request, 'app1/showcreditfriendly.html', context)
         else:
@@ -9233,10 +9245,10 @@ def delcreate(request):
 
 
 @login_required(login_url='regcomp')
-def editestimate(request, id):
+def editestimate(request, estimateid):
     try:
-        cmp1 = company.objects.get(cid=request.session['uid'])
-        edt = estimate.objects.get(estimateid=id, cid=cmp1)
+        cmp1 = company.objects.get(id=request.session['uid'])
+        edt = estimate.objects.get(estimateid=estimateid, cid=cmp1)
         inv = inventory.objects.filter(cid=cmp1).all()
         bun = bundle.objects.filter(cid=cmp1).all()
         noninv = noninventory.objects.filter(cid=cmp1).all()
@@ -9307,10 +9319,10 @@ def deleteestimate(request, id):
 
 
 @login_required(login_url='regcomp')
-def editdelayed(request, id):
+def editdelayed(request, delayedchargeid):
     try:
-        cmp1 = company.objects.get(cid=request.session['uid'])
-        edit = delayedcharge.objects.get(delayedchargeid=id, cid=cmp1)
+        cmp1 = company.objects.get(id=request.session['uid'])
+        edit = delayedcharge.objects.get(delayedchargeid=delayedchargeid, cid=cmp1)
         inv = inventory.objects.filter(cid=cmp1).all()
         bun = bundle.objects.filter(cid=cmp1).all()
         noninv = noninventory.objects.filter(cid=cmp1).all()

@@ -135,7 +135,7 @@ class salesrecpts(models.Model):
     saleprice = models.CharField(max_length=100)
     saaletotal = models.CharField(max_length=100)
     salesubtotal = models.CharField(max_length=100)
-    tax = models.IntegerField(default=0, null=True)
+    tax = models.CharField(max_length=100,default=0)
     saletaxamount = models.CharField(max_length=100)
     salegrandtotal = models.CharField(max_length=100)
 
@@ -145,7 +145,7 @@ class salesrecpts(models.Model):
     catqty2 = models.CharField(max_length=100)
     catprice2 = models.CharField(max_length=100)
     cattotal2 = models.CharField(max_length=100)
-    tax1 = models.IntegerField(default=0, null=True)
+    tax1 = models.CharField(max_length=100,default=0)
 
     category3 = models.CharField(max_length=100)
     categoryhsn3 = models.CharField(max_length=100)
@@ -153,7 +153,7 @@ class salesrecpts(models.Model):
     catqty3 = models.CharField(max_length=100)
     catprice3 = models.CharField(max_length=100)
     cattotal3 = models.CharField(max_length=100)
-    tax2 = models.IntegerField(default=0, null=True)
+    tax2 = models.CharField(max_length=100,default=0)
 
     category4 = models.CharField(max_length=100)
     categoryhsn4 = models.CharField(max_length=100)
@@ -161,7 +161,7 @@ class salesrecpts(models.Model):
     catqty4 = models.CharField(max_length=100)
     catprice4 = models.CharField(max_length=100)
     cattotal4 = models.CharField(max_length=100)
-    tax3 = models.IntegerField(default=0, null=True)
+    tax3 = models.CharField(max_length=100,default=0)
     offline = models.CharField(max_length=100, default='', null=True)
 
     def __str__(self):
@@ -470,8 +470,8 @@ class credit(models.Model):
     tax = models.CharField(max_length=100, default='0')
     subtot = models.IntegerField(default=0, null=True)
     total = models.IntegerField(default=0, null=True)
-    grndtot = models.IntegerField(default=0, null=True)
-    taxamnt = models.IntegerField(default=0, null=True)
+    grndtot = models.CharField(max_length=100,default=0)
+    taxamnt = models.CharField(max_length=100,default=0)
     product1 = models.CharField(max_length=100, default='')
     descrip1 = models.CharField(max_length=100, default='')
     qty1 = models.IntegerField(default=0, null=True)
